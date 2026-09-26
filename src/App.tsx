@@ -63,7 +63,7 @@ function EnvelopeCover({ onOpen }: { onOpen: () => void }) {
           <div className="envelope-flap" />
           <div className="ribbon" />
           <button className="seal" type="button" onClick={onOpen} data-testid="button-open-invitation" aria-label="Open Syed Muneeb and Syeda Emaan's invitation">
-            <span className="seal-mark">M <span className="ampersand">&amp;</span> L</span>
+            <span className="seal-mark">M <span className="ampersand">&amp;</span> E</span>
           </button>
         </div>
         <span className="seal-hint">Press the seal to open</span>
