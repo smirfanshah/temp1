@@ -55,14 +55,14 @@ function EnvelopeCover({ onOpen }: { onOpen: () => void }) {
     >
       <div className="cover-content">
         <div className="cover-kicker">A keepsake for our favourite people</div>
-        <h1 className="cover-title">Muneeb <span className="ampersand">&amp;</span> Laraib</h1>
+        <h1 className="cover-title">Syed Muneeb<br /><span className="ampersand">&amp;</span><br />Syeda Emaan</h1>
         <p className="cover-subtitle">A little paper moment, made for a very big day.</p>
         <div className="envelope" aria-label="Wedding invitation envelope">
           <div className="envelope-paper" />
           <div className="envelope-pocket" />
           <div className="envelope-flap" />
           <div className="ribbon" />
-          <button className="seal" type="button" onClick={onOpen} data-testid="button-open-invitation" aria-label="Open Muneeb and Laraib's invitation">
+          <button className="seal" type="button" onClick={onOpen} data-testid="button-open-invitation" aria-label="Open Syed Muneeb and Syeda Emaan's invitation">
             <span className="seal-mark">M <span className="ampersand">&amp;</span> L</span>
           </button>
         </div>
@@ -101,7 +101,7 @@ function InvitationSlide() {
         <p className="slide-copy" style={{ maxWidth: 310, marginTop: '1.25rem' }}>
           Request the honour of your presence at the wedding of
         </p>
-        <h2 className="slide-title">Muneeb<br /><span className="ampersand">&amp;</span> Laraib</h2>
+        <h2 className="slide-title">Syed Muneeb<br /><span className="ampersand">&amp;</span> Syeda Emaan</h2>
         <Heart className="hero-heart" size={17} strokeWidth={1.3} fill="currentColor" />
         <div className="hero-date">Friday · 09 October · 2026</div>
         <div className="hero-venue">Kahna · Lahore</div>
