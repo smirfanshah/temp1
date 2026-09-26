@@ -235,8 +235,8 @@ function DetailsSlide({ onMap, onCopy, copied }: { onMap: () => void; onCopy: ()
               <div className="detail-card-header"><MapPin size={17} strokeWidth={1.5} /><span className="detail-label">The venue</span></div>
               <div className="address-row">
                 <div>
-                  <div className="detail-value">bismillah marquee</div>
-                  <div className="detail-copy">Location will be updated</div>
+                  <div className="detail-value">Bismillah marquee</div>
+                  <div className="detail-copy">Location will be updated soon</div>
                 </div>
                 <button className="copy-button" type="button" onClick={onCopy} data-testid="button-copy-address">
                   {copied ? <Check size={14} /> : <Copy size={14} />} {copied ? 'Copied' : 'Copy'}
@@ -247,7 +247,6 @@ function DetailsSlide({ onMap, onCopy, copied }: { onMap: () => void; onCopy: ()
 
           <div className="details-actions">
             <button className="map-button" type="button" onClick={onMap} data-testid="button-open-map" disabled aria-disabled="true"><Navigation size={14} /> Location (will be updated)</button>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', color: '#9d7279', fontSize: '.7rem' }}><Sparkles size={14} /> With love, always</div>
           </div>
 
           <div style={{ marginTop: '1rem' }}>
