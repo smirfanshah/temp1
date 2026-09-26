@@ -99,9 +99,9 @@ function InvitationSlide() {
         <div className="eyebrow">In the name of love</div>
         <div className="script-line">Together with their families</div>
         <p className="slide-copy" style={{ maxWidth: 310, marginTop: '1.25rem' }}>
-          Request the honour of your presence at the baraat of
+          Request the honour of your presence at the wedding of
         </p>
-        <h2 className="slide-title">Muneeb<br /><span className="ampersand">&amp;</span> Emaan</h2>
+        <h2 className="slide-title">Muneeb<br /><span className="ampersand">&amp;</span> Laraib</h2>
         <Heart className="hero-heart" size={17} strokeWidth={1.3} fill="currentColor" />
         <div className="hero-date">Friday · 09 October · 2026</div>
         <div className="hero-venue">Kahna · Lahore</div>
@@ -236,7 +236,7 @@ function DetailsSlide({ onMap, onCopy, copied }: { onMap: () => void; onCopy: ()
               <div className="address-row">
                 <div>
                   <div className="detail-value">bismillah marquee</div>
-                  <div className="detail-copy">Kahna Nau Lahore</div>
+                  <div className="detail-copy">Location will be updated</div>
                 </div>
                 <button className="copy-button" type="button" onClick={onCopy} data-testid="button-copy-address">
                   {copied ? <Check size={14} /> : <Copy size={14} />} {copied ? 'Copied' : 'Copy'}
@@ -247,6 +247,7 @@ function DetailsSlide({ onMap, onCopy, copied }: { onMap: () => void; onCopy: ()
 
           <div className="details-actions">
             <button className="map-button" type="button" onClick={onMap} data-testid="button-open-map" disabled aria-disabled="true"><Navigation size={14} /> Location (will be updated)</button>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', color: '#9d7279', fontSize: '.7rem' }}><Sparkles size={14} /> With love, always</div>
           </div>
 
           <div style={{ marginTop: '1rem' }}>
@@ -298,7 +299,7 @@ function InvitationDeck() {
   };
 
   const copyAddress = async () => {
-    const text = 'Kahna nau Lahore';
+    const text = 'Location will be updated';
     try {
       await navigator.clipboard?.writeText(text);
     } catch (e) {
