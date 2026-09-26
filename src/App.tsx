@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useMemo, useState } from 'react';
+import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   Check,
@@ -96,7 +96,7 @@ function InvitationSlide() {
     <motion.article className="slide-card" data-testid="card-invitation" initial={{ opacity: 0, scale: 0.98, y: 8 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 1.02 }} transition={{ duration: 0.6, ease: 'easeOut' }}>
       <FloralCorners />
       <div className="slide-inner centered">
-        <div className="eyebrow">In the name of love</div>
+        <div className="eyebrow">In the name of Allah</div>
         <div className="script-line">Together with their families</div>
         <p className="slide-copy" style={{ maxWidth: 310, marginTop: '1.25rem' }}>
           Request the honour of your presence at the wedding of
@@ -272,29 +272,34 @@ function DetailsSlide({ onMap, onCopy, copied }: { onMap: () => void; onCopy: ()
 }
 
 function InvitationDeck() {
-  const [soundOn, setSoundOn] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [soundOn, setSoundOn] = useState(true);
   const [copied, setCopied] = useState(false);
   const [curtainOpen, setCurtainOpen] = useState(false);
 
-  const toggleSound = () => {
-    const nextSound = !soundOn;
-    setSoundOn(nextSound);
-    if (nextSound) {
-      const AudioContextClass = window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-      if (AudioContextClass) {
-        const context = new AudioContextClass();
-        const oscillator = context.createOscillator();
-        const gain = context.createGain();
-        oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(523.25, context.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(659.25, context.currentTime + .25);
-        gain.gain.setValueAtTime(.0001, context.currentTime);
-        gain.gain.exponentialRampToValueAtTime(.04, context.currentTime + .03);
-        gain.gain.exponentialRampToValueAtTime(.0001, context.currentTime + .5);
-        oscillator.connect(gain).connect(context.destination);
-        oscillator.start();
-        oscillator.stop(context.currentTime + .52);
-      }
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.volume = 0.35;
+    audio.play().catch(() => setSoundOn(false));
+  }, []);
+
+  const toggleSound = async () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (soundOn) {
+      audio.pause();
+      setSoundOn(false);
+      return;
+    }
+
+    try {
+      await audio.play();
+      setSoundOn(true);
+    } catch {
+      setSoundOn(false);
     }
   };
 
@@ -314,8 +319,9 @@ function InvitationDeck() {
   };
   return (
     <main className="deck-shell" data-testid="screen-deck">
+      <audio ref={audioRef} src="/audio.mpeg" autoPlay loop preload="auto" />
       <header className="deck-header">
-        <div className="brand-lockup">M <span className="ampersand">&amp;</span> H<small>Our wedding, in little moments</small></div>
+        <div className="brand-lockup">M <span className="ampersand">&amp;</span> E<small>Our wedding, in little moments</small></div>
         <div className="header-actions">
           <button className="icon-button" type="button" onClick={toggleSound} data-testid="button-toggle-sound" aria-label={soundOn ? 'Turn sound off' : 'Turn sound on'}>{soundOn ? <Volume2 size={16} /> : <VolumeX size={16} />}</button>
         </div>
